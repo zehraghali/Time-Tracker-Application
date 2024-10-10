@@ -1,9 +1,11 @@
+package org.example;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class Activity {
     private String name;
-    private int duration; // Duration in minutes
+    private int duration; // Kesto minuuteissa
 
     public Activity(String name, int duration) {
         this.name = name;
@@ -25,16 +27,16 @@ public class SportsTimeTracker {
 
     public static void logActivity(String name, int duration) {
         activities.add(new Activity(name, duration));
-        System.out.println("Activity logged: " + name + " (" + duration + " minutes)");
+        System.out.println("Toiminta kirjattu: " + name + " (" + duration + " minuuttia)");
     }
 
     public static void viewActivities() {
         if (activities.isEmpty()) {
-            System.out.println("No activities logged yet.");
+            System.out.println("Ei vielä kirjattuja toimintoja.");
         } else {
-            System.out.println("Logged activities:");
+            System.out.println("Kirjatut toiminnot:");
             for (Activity activity : activities) {
-                System.out.println(activity.getName() + " - " + activity.getDuration() + " minutes");
+                System.out.println(activity.getName() + " - " + activity.getDuration() + " minuuttia");
             }
         }
     }
@@ -44,20 +46,20 @@ public class SportsTimeTracker {
         for (Activity activity : activities) {
             total += activity.getDuration();
         }
-        System.out.println("Total time spent on sports: " + total + " minutes");
+        System.out.println("Yhteensä aikaa urheiluun: " + total + " minuuttia");
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("\n1. Log Activity\n2. View Activities\n3. Total Time\n4. Exit");
+            System.out.println("\n1. Kirjaa toiminta\n2. Näytä toiminnot\n3. Yhteensä aikaa\n4. Poistu");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); // kuluta uusi rivi
 
             if (choice == 1) {
-                System.out.println("Enter activity name:");
+                System.out.println("Syötä toiminnan nimi:");
                 String name = scanner.nextLine();
-                System.out.println("Enter activity duration (minutes):");
+                System.out.println("Syötä toiminnan kesto (minuutteina):");
                 int duration = scanner.nextInt();
                 logActivity(name, duration);
             } else if (choice == 2) {
@@ -67,7 +69,7 @@ public class SportsTimeTracker {
             } else if (choice == 4) {
                 break;
             } else {
-                System.out.println("Invalid choice. Try again.");
+                System.out.println("Virheellinen valinta. Yritä uudelleen.");
             }
         }
         scanner.close();
