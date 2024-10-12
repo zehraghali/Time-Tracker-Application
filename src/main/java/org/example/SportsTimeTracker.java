@@ -26,6 +26,10 @@ public class SportsTimeTracker {
     private static ArrayList<Activity> activities = new ArrayList<>();
 
     public static void logActivity(String name, int duration) {
+        if (duration <= 0) {
+            System.out.println("Keston on oltava suurempi kuin nolla.");
+            return;
+        }
         activities.add(new Activity(name, duration));
         System.out.println("Toiminta kirjattu: " + name + " (" + duration + " minuuttia)");
     }
@@ -49,8 +53,7 @@ public class SportsTimeTracker {
         System.out.println("Yhteensä aikaa urheiluun: " + total + " minuuttia");
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void handleUserInput(Scanner scanner) {
         while (true) {
             System.out.println("\n1. Kirjaa toiminta\n2. Näytä toiminnot\n3. Yhteensä aikaa\n4. Poistu");
             int choice = scanner.nextInt();
@@ -72,6 +75,11 @@ public class SportsTimeTracker {
                 System.out.println("Virheellinen valinta. Yritä uudelleen.");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        handleUserInput(scanner);
         scanner.close();
     }
 }
